@@ -128,5 +128,50 @@ footer{background:#061a34;color:#b8c5d6;text-align:center;padding:24px 15px;font
 </div></div></div>
 </main>
 <footer>© 2026 Deepika Traders. All rights reserved. • Connect. Secure. Solve.</footer>
-</body>
+<style>
+.sub-btn{display:inline-block;margin-top:12px;background:none;border:1px solid var(--blue2);color:var(--blue2);border-radius:8px;padding:7px 13px;font-weight:800;font-size:14px;cursor:pointer}
+.sub-btn:hover{background:var(--blue2);color:#fff}
+.sub-list{list-style:none;max-height:0;overflow:hidden;transition:max-height .35s ease}
+.sub-list.open{max-height:400px;margin-top:10px}
+.sub-list li{border-top:1px solid #e5eaf2}
+.card .sub-list a{display:block;margin:0;padding:9px 4px;color:var(--text);font-weight:600;font-size:14px}
+.card .sub-list a:before{content:"› ";color:var(--gold);font-weight:800}
+</style>
+<script>
+(function(){
+var data=[
+[['printer'],['Printer sale','Service & repair','Cartridge refill','New cartridges','Printer parts','Passbook printer sale & service']],
+[['amc'],['Computer AMC','Printer AMC','Network & CCTV AMC','On-site support','Annual maintenance plans']],
+[['cctv'],['CCTV camera sale','New installation','Repair & service','DVR / NVR & storage','Mobile remote viewing','Spare parts']],
+[['network'],['WiFi & LAN setup','Router & switch sale','Cabling & installation','Office networking','Network troubleshooting']],
+[['hardware'],['Desktop & laptop sale','Repair & upgrade','RAM, SSD & hard disk','Monitors & UPS','Keyboard, mouse & accessories','Spare parts']],
+[['isp','jio','airtel','bsnl','internet','broadband'],['New connection','Jio','Airtel','BSNL','Recharge & support']],
+[['it service','it related','software'],['Software & OS installation','Antivirus setup','Data backup & recovery','Email & website support']]
+];
+document.querySelectorAll('.card').forEach(function(card){
+ var h=card.querySelector('h3'); if(!h) return;
+ var t=h.textContent.toLowerCase(), items=null;
+ for(var i=0;i<data.length&&!items;i++){
+  if(data[i][0].some(function(k){return t.indexOf(k)>-1})) items=data[i][1];
+ }
+ if(!items) return;
+ var body=card.querySelector('.card-body')||card;
+ var btn=document.createElement('button');
+ btn.className='sub-btn'; btn.type='button'; btn.textContent='View options ▾';
+ var ul=document.createElement('ul'); ul.className='sub-list';
+ items.forEach(function(x){
+  var li=document.createElement('li'), a=document.createElement('a');
+  a.href='https://wa.me/919457646917?text='+encodeURIComponent('Hello, I need: '+x);
+  a.target='_blank'; a.rel='noopener'; a.textContent=x;
+  li.appendChild(a); ul.appendChild(li);
+ });
+ btn.onclick=function(){
+  var o=ul.classList.toggle('open');
+  btn.textContent=o?'Hide options ▴':'View options ▾';
+ };
+ body.appendChild(btn); body.appendChild(ul);
+});
+})();
+</script>
+.</body>
 </html>

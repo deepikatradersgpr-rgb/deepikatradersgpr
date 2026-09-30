@@ -173,5 +173,24 @@ document.querySelectorAll('.card').forEach(function(card){
 });
 })();
 </script>
-.</body>
+<script>
+(function(){
+var card=Array.prototype.slice.call(document.querySelectorAll('.card')).filter(function(c){
+ var h=c.querySelector('h3'); return h && h.textContent.toLowerCase().indexOf('hardware')>-1;
+})[0];
+if(!card) return;
+var img=card.querySelector('img'); if(!img) return;
+var q='?auto=format&fit=crop&w=900&q=80';
+var list=[
+ 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7'+q,
+ 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea'+q,
+ 'https://images.unsplash.com/photo-1587831990711-23ca6441447b'+q,
+ 'https://images.unsplash.com/photo-1518770660439-4636190af475'+q
+];
+var i=0;
+img.onerror=function(){ i++; if(i<list.length){ img.src=list[i]; } };
+img.src=list[0];
+})();
+</script>
+ .</body>
 </html>
